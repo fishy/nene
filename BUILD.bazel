@@ -13,8 +13,12 @@ MANIFEST = "AndroidManifest.xml"
 
 MANIFEST_VALUES = {"PACKAGE": PACKAGE}
 
-android_binary(
+load("@rules_oppia_android//:oppia_android_application.bzl", "oppia_android_application")
+
+oppia_android_application(
     name = "app",
+    config_file = "//:bundle_config.pb.json",
+    proguard_generate_mapping = False,
     custom_package = PACKAGE,
     dexopts = ["--force-jumbo"],
     manifest = MANIFEST,
