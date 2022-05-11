@@ -1,0 +1,5 @@
+# --noincremental_dexing is required for dexopts = ["--force-jumbo"] in
+# android_binary rule to work: https://github.com/bazelbuild/bazel/issues/9383.
+build --noincremental_dexing
+
+build:release -c opt

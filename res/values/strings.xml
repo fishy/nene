@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Nene</string>
+  <string name="settings">Settings</string>
+
+  <string name="toast_text_template">%1$s: %2$s</string>
+  <string name="toast_not_twitter_url">
+    \"%1$s\" doesn\'t seem to be a supported Twitter URL.
+  </string>
+
+  <!-- Preference tags -->
+  <string name="pref_tag_about">pref_about</string>
+
+  <!-- Preference headers -->
+  <string name="pref_header_faq">FAQ</string>
+  <string name="pref_header_faq_summary">Frequently Asked Questions</string>
+  <string name="pref_header_about">About</string>
+  <string name="pref_header_about_summary">Nene v0.1.0</string>
+
+  <!-- Main preference -->
+  <string name="pref_title_nitter_domain">Domain of nitter instance to use</string>
+  <string name="pref_title_use_custom_tabs">Use Chrome Custom Tabs</string>
+  <string name="pref_desc_use_custom_tabs_yes">
+    Use Chrome Custom Tabs to launch nitter URL
+  </string>
+  <string name="pref_desc_use_custom_tabs_no">
+    Use your default browser to launch nitter URL
+  </string>
+  <string name="category_misc">Misc</string>
+
+  <!-- About screen -->
+  <string name="about">Nene v0.1.0 by Yuxuan \'fishy\' Wang</string>
+  <string name="about_github">This is an Open Source project.</string>
+  <string name="credits">Credits</string>
+  <string name="credit_icon">
+    App icon was originally made by Smashicons for Flaticon, used under Flaticon License.
+  </string>
+</resources>

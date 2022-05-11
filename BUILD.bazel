@@ -1,0 +1,43 @@
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "define_kt_toolchain")
+
+define_kt_toolchain(
+    name = "kotlin_toolchain",
+    api_version = "1.6",
+    jvm_target = "11",
+    language_version = "1.6",
+)
+
+PACKAGE = "com.yhsif.nene"
+
+MANIFEST = "AndroidManifest.xml"
+
+MANIFEST_VALUES = {"PACKAGE": PACKAGE}
+
+android_binary(
+    name = "app",
+    custom_package = PACKAGE,
+    dexopts = ["--force-jumbo"],
+    manifest = MANIFEST,
+    manifest_values = MANIFEST_VALUES,
+    deps = [
+        ":nene",
+    ],
+)
+
+load("@io_bazel_rules_kotlin//kotlin:android.bzl", "kt_android_library")
+
+kt_android_library(
+    name = "nene",
+    srcs = glob(["src/**/*.kt"]),
+    custom_package = PACKAGE,
+    manifest = MANIFEST,
+    resource_files = glob(["res/**/*"]),
+    deps = [
+        "@maven//:androidx_appcompat_appcompat",
+        "@maven//:androidx_browser_browser",
+        "@maven//:androidx_core_core_ktx",
+        "@maven//:androidx_fragment_fragment_ktx",
+        "@maven//:androidx_preference_preference",
+        "@maven//:com_google_android_material_material",
+    ],
+)

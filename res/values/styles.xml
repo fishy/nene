@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style
+      name="BaseActivity"
+      parent="Theme.MaterialComponents.DayNight"
+      >
+    <item name="colorPrimary">@color/primary</item>
+    <item name="colorPrimaryDark">@color/primary_dark</item>
+    <item name="colorAccent">@color/secondary</item>
+  </style>
+  <style
+      name="Settings"
+      parent="BaseActivity"
+    />
+
+  <style
+      name="TextMedium"
+      parent="TextAppearance.MaterialComponents.Body1"
+    />
+  <style name="TextMedium.Action" >
+    <item name="android:textColor">@color/secondary</item>
+  </style>
+
+  <style
+      name="TextSmall"
+      parent="TextAppearance.MaterialComponents.Caption"
+    />
+</resources>

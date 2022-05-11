@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+  <EditTextPreference
+      android:defaultValue="nitter.net"
+      android:key="nitter_domain"
+      android:title="@string/pref_title_nitter_domain"
+    />
+  <SwitchPreference
+      android:defaultValue="true"
+      android:key="use_custom_tabs"
+      android:title="@string/pref_title_use_custom_tabs"
+      android:summary="@string/pref_desc_use_custom_tabs_yes"
+    />
+  <PreferenceCategory
+      android:title="@string/category_misc"
+      >
+    <Preference
+        android:title="@string/pref_header_faq"
+        android:summary="@string/pref_header_faq_summary"
+        >
+      <intent
+          android:action="android.intent.action.VIEW"
+          android:data="https://www.github.com/fishy/nene/blob/main/FAQ.md"
+        />
+    </Preference>
+    <Preference
+        android:key="@string/pref_tag_about"
+        android:title="@string/pref_header_about"
+        android:summary="@string/pref_header_about_summary"
+        android:fragment="com.yhsif.nene.AboutPreferenceFragment"
+        android:icon="@drawable/adaptive_icon_foreground"
+      />
+  </PreferenceCategory>
+</androidx.preference.PreferenceScreen>
