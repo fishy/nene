@@ -13,20 +13,33 @@ MANIFEST = "AndroidManifest.xml"
 
 MANIFEST_VALUES = {"PACKAGE": PACKAGE}
 
-load("@rules_oppia_android//:oppia_android_application.bzl", "oppia_android_application")
-
-oppia_android_application(
-    name = "app",
-    config_file = "//:bundle_config.pb.json",
-    proguard_generate_mapping = False,
-    custom_package = PACKAGE,
-    dexopts = ["--force-jumbo"],
-    manifest = MANIFEST,
-    manifest_values = MANIFEST_VALUES,
-    deps = [
-        ":nene",
-    ],
+load(
+    "@rules_oppia_android//:oppia_android_application.bzl",
+    "declare_deployable_application",
+    "oppia_android_application",
 )
+
+declare_deployable_application(
+    name = "install",
+    aab_target = "//:debug",
+)
+
+[
+    oppia_android_application(
+        name = name,
+        config_file = "//:bundle_config.pb.json",
+        custom_package = PACKAGE,
+        dexopts = ["--force-jumbo"],
+        manifest = MANIFEST,
+        manifest_values = MANIFEST_VALUES,
+        proguard_generate_mapping = False,
+        shrink_resources = release,
+        deps = [
+            ":nene",
+        ],
+    )
+    for name, release in (("debug", False), ("release", True))
+]
 
 load("@io_bazel_rules_kotlin//kotlin:android.bzl", "kt_android_library")
 
