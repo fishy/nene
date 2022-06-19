@@ -37,10 +37,16 @@
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
+
         <data android:scheme="http" android:host="twitter.com" />
         <data android:scheme="https" android:host="twitter.com" />
-        <data android:scheme="http" android:host="mobile.twitter.com" />
-        <data android:scheme="https" android:host="mobile.twitter.com" />
+        <data android:scheme="http" android:host="*.twitter.com" />
+        <data android:scheme="https" android:host="*.twitter.com" />
+
+        <data android:scheme="http" android:host="twimg.com" />
+        <data android:scheme="https" android:host="twimg.com" />
+        <data android:scheme="http" android:host="*.twimg.com" />
+        <data android:scheme="https" android:host="*.twimg.com" />
       </intent-filter>
 
       <intent-filter>

@@ -10,6 +10,13 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.preference.PreferenceManager
 
 class LauncherActivity : Activity() {
+  companion object {
+    fun isDomain(uri: Uri?, domain: String): Boolean {
+      val auth = uri?.getAuthority() ?: ""
+      return (auth == domain) || (auth.endsWith("." + domain))
+    }
+  }
+
   override fun onResume() {
     var origText: String = ""
     var origin: Uri? = null
@@ -37,9 +44,20 @@ class LauncherActivity : Activity() {
       Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     } else {
       val pref = PreferenceManager.getDefaultSharedPreferences(this)
-      val url = origin!!.buildUpon().scheme("https").authority(
-        pref.getString(SettingsActivity.KEY_NITTER_DOMAIN, SettingsActivity.DEFAULT_NITTER_DOMAIN),
-      ).build()
+      val url = if (isDomain(origin, "twimg.com")) {
+        Uri.Builder()
+          .scheme("https")
+          .authority(
+            pref.getString(SettingsActivity.KEY_NITTER_DOMAIN, SettingsActivity.DEFAULT_NITTER_DOMAIN),
+          )
+          .appendEncodedPath("pic/")
+          .appendPath(origin.toString())
+          .build()
+      } else {
+        origin!!.buildUpon().scheme("https").authority(
+          pref.getString(SettingsActivity.KEY_NITTER_DOMAIN, SettingsActivity.DEFAULT_NITTER_DOMAIN),
+        ).build()
+      }
       if (pref.getBoolean(SettingsActivity.KEY_USE_CUSTOM_TABS, SettingsActivity.DEFAULT_USE_CUSTOM_TABS)) {
         CustomTabsIntent.Builder().setDefaultColorSchemeParams(
           CustomTabColorSchemeParams.Builder().setToolbarColor(
