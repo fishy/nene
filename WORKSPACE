@@ -29,10 +29,10 @@ maven_install(
         "androidx.activity:activity:1.4.0",
         "androidx.appcompat:appcompat:1.3.1",
         "androidx.browser:browser:1.4.0",
-        "androidx.core:core-ktx:1.6.0",
+        "androidx.core:core-ktx:1.8.0",
         "androidx.fragment:fragment-ktx:1.4.1",
         "androidx.preference:preference:1.1.1",
-        "com.google.android.material:material:1.6.0",
+        "com.google.android.material:material:1.6.1",
     ],
     maven_install_json = "@nene//:maven_install.json",
     repositories = [
@@ -46,9 +46,9 @@ load("@maven//:defs.bzl", "pinned_maven_install")
 
 pinned_maven_install()
 
-RULES_KOTLIN_TAG = "1.6.0-RC-1"
+RULES_KOTLIN_TAG = "v1.6.0"
 
-RULES_KOTLIN_SHA = "f1a4053eae0ea381147f5056bb51e396c5c494c7f8d50d0dee4cc2f9d5c701b0"
+RULES_KOTLIN_SHA = "a57591404423a52bd6b18ebba7979e8cd2243534736c5c94d35c89718ea38f94"
 
 http_archive(
     name = "io_bazel_rules_kotlin",
