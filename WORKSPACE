@@ -3,24 +3,30 @@ workspace(name = "nene")
 android_sdk_repository(
     name = "androidsdk",
     api_level = 31,
-    # This is the latest version with dx.jar
-    build_tools_version = "30.0.3",
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_jar")
 
-RULES_JVM_EXTERNAL_TAG = "4.2"
+RULES_JVM_EXTERNAL_TAG = "5.3"
 
-RULES_JVM_EXTERNAL_SHA = "cd1a77b7b02e8e008439ca76fd34f5b07aecb8c752961f9640dea15e9e5ba1ca"
+RULES_JVM_EXTERNAL_SHA = "d31e369b854322ca5098ea12c69d7175ded971435e55c18dd9dd5f29cc5249ac"
 
 http_archive(
     name = "rules_jvm_external",
     sha256 = RULES_JVM_EXTERNAL_SHA,
     strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
     urls = [
-        "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
+        "https://github.com/bazelbuild/rules_jvm_external/releases/download/%s/rules_jvm_external-%s.tar.gz" % (RULES_JVM_EXTERNAL_TAG, RULES_JVM_EXTERNAL_TAG),
     ],
 )
+
+load("@rules_jvm_external//:repositories.bzl", "rules_jvm_external_deps")
+
+rules_jvm_external_deps()
+
+load("@rules_jvm_external//:setup.bzl", "rules_jvm_external_setup")
+
+rules_jvm_external_setup()
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 
@@ -28,10 +34,10 @@ maven_install(
     artifacts = [
         "androidx.activity:activity:1.4.0",
         "androidx.appcompat:appcompat:1.3.1",
-        "androidx.browser:browser:1.4.0",
+        "androidx.browser:browser:1.5.0",
         "androidx.core:core-ktx:1.8.0",
         "androidx.fragment:fragment-ktx:1.4.1",
-        "androidx.preference:preference:1.1.1",
+        "androidx.preference:preference:1.2.0",
         "com.google.android.material:material:1.6.1",
     ],
     maven_install_json = "@nene//:maven_install.json",
@@ -46,9 +52,9 @@ load("@maven//:defs.bzl", "pinned_maven_install")
 
 pinned_maven_install()
 
-RULES_KOTLIN_TAG = "v1.6.0"
+RULES_KOTLIN_TAG = "v1.8"
 
-RULES_KOTLIN_SHA = "a57591404423a52bd6b18ebba7979e8cd2243534736c5c94d35c89718ea38f94"
+RULES_KOTLIN_SHA = "01293740a16e474669aba5b5a1fe3d368de5832442f164e4fbfc566815a8bc3a"
 
 http_archive(
     name = "io_bazel_rules_kotlin",
@@ -64,9 +70,9 @@ kotlin_repositories()
 
 register_toolchains("//:kotlin_toolchain")
 
-BUNDLE_TOOL_TAG = "1.10.0"
+BUNDLE_TOOL_TAG = "1.15.1"
 
-BUNDLE_TOOL_SHA = "a5eee8fd22628c3f45662492498d3da38faf2bf2c64d425911492a5db6bc081c"
+BUNDLE_TOOL_SHA = "aec9dc64fb25acc64eb668b45c0ec6a0ebba30db4a2e084b61b7af0a7380a0e1"
 
 http_jar(
     name = "android_bundletool",
