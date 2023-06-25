@@ -29,5 +29,12 @@ class PrefsFragment : BasePreferenceFragment() {
         SettingsActivity.DEFAULT_USE_CUSTOM_TABS,
       )
     }
+    val prefIncognito: Preference? = findPreference(SettingsActivity.KEY_INCOGNITO_CUSTOM_TABS)
+    if (prefIncognito != null) {
+      SettingsActivity.bindPreferenceSummaryToBoolean(
+        prefIncognito,
+        SettingsActivity.DEFAULT_INCOGNITO_CUSTOM_TABS,
+      )
+    }
   }
 }

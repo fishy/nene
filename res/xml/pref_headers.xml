@@ -13,6 +13,13 @@
       android:title="@string/pref_title_use_custom_tabs"
       android:summary="@string/pref_desc_use_custom_tabs_yes"
     />
+  <SwitchPreference
+      android:defaultValue="false"
+      android:key="incognito_custom_tabs"
+      android:title="@string/pref_title_incognito_custom_tabs"
+      android:summary="@string/pref_desc_incognito_custom_tabs_no"
+      android:dependency="use_custom_tabs"
+    />
   <PreferenceCategory
       android:title="@string/category_misc"
       >

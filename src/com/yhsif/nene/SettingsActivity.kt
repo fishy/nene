@@ -17,6 +17,8 @@ public class SettingsActivity :
     public const val DEFAULT_NITTER_DOMAIN = "nitter.net"
     public const val KEY_USE_CUSTOM_TABS = "use_custom_tabs"
     public const val DEFAULT_USE_CUSTOM_TABS = true
+    public const val KEY_INCOGNITO_CUSTOM_TABS = "incognito_custom_tabs"
+    public const val DEFAULT_INCOGNITO_CUSTOM_TABS = false
 
     val prefBinder = object : Preference.OnPreferenceChangeListener {
       override fun onPreferenceChange(
@@ -30,6 +32,15 @@ public class SettingsActivity :
                 R.string.pref_desc_use_custom_tabs_yes
               } else {
                 R.string.pref_desc_use_custom_tabs_no
+              },
+            )
+          }
+          KEY_INCOGNITO_CUSTOM_TABS -> {
+            pref.setSummary(
+              if (value == true) {
+                R.string.pref_desc_incognito_custom_tabs_yes
+              } else {
+                R.string.pref_desc_incognito_custom_tabs_no
               },
             )
           }

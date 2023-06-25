@@ -63,7 +63,11 @@ class LauncherActivity : Activity() {
           CustomTabColorSchemeParams.Builder().setToolbarColor(
             R.color.primary,
           ).build(),
-        ).build().launchUrl(this, url)
+        ).build().apply {
+          if (pref.getBoolean(SettingsActivity.KEY_INCOGNITO_CUSTOM_TABS, SettingsActivity.DEFAULT_INCOGNITO_CUSTOM_TABS)) {
+            intent.putExtra("com.google.android.apps.chrome.EXTRA_OPEN_NEW_INCOGNITO_TAB", true)
+          }
+        }.launchUrl(this, url)
       } else {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setData(url)
