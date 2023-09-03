@@ -47,6 +47,11 @@
         <data android:scheme="https" android:host="twimg.com" />
         <data android:scheme="http" android:host="*.twimg.com" />
         <data android:scheme="https" android:host="*.twimg.com" />
+
+        <data android:scheme="http" android:host="x.com" />
+        <data android:scheme="https" android:host="x.com" />
+        <data android:scheme="http" android:host="*.x.com" />
+        <data android:scheme="https" android:host="*.x.com" />
       </intent-filter>
 
       <intent-filter>
