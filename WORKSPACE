@@ -2,13 +2,12 @@ workspace(name = "nene")
 
 android_sdk_repository(
     name = "androidsdk",
-    api_level = 31,
+    api_level = 33,
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_jar")
 
 RULES_JVM_EXTERNAL_TAG = "5.3"
-
 RULES_JVM_EXTERNAL_SHA = "d31e369b854322ca5098ea12c69d7175ded971435e55c18dd9dd5f29cc5249ac"
 
 http_archive(
@@ -52,15 +51,14 @@ load("@maven//:defs.bzl", "pinned_maven_install")
 
 pinned_maven_install()
 
-RULES_KOTLIN_TAG = "v1.8"
-
-RULES_KOTLIN_SHA = "01293740a16e474669aba5b5a1fe3d368de5832442f164e4fbfc566815a8bc3a"
+RULES_KOTLIN_TAG = "v1.9.0"
+RULES_KOTLIN_SHA = "5766f1e599acf551aa56f49dab9ab9108269b03c557496c54acaf41f98e2b8d6"
 
 http_archive(
     name = "io_bazel_rules_kotlin",
     sha256 = RULES_KOTLIN_SHA,
     urls = [
-        "https://github.com/bazelbuild/rules_kotlin/releases/download/%s/rules_kotlin_release.tgz" % RULES_KOTLIN_TAG,
+        "https://github.com/bazelbuild/rules_kotlin/releases/download/%s/rules_kotlin-%s.tar.gz" % (RULES_KOTLIN_TAG, RULES_KOTLIN_TAG),
     ],
 )
 
@@ -70,9 +68,8 @@ kotlin_repositories()
 
 register_toolchains("//:kotlin_toolchain")
 
-BUNDLE_TOOL_TAG = "1.15.1"
-
-BUNDLE_TOOL_SHA = "aec9dc64fb25acc64eb668b45c0ec6a0ebba30db4a2e084b61b7af0a7380a0e1"
+BUNDLE_TOOL_TAG = "1.15.5"
+BUNDLE_TOOL_SHA = "0ebac88764e16b2154aa7506187917d169959338ad9d510e3174bcc96c9d0f40"
 
 http_jar(
     name = "android_bundletool",
@@ -82,9 +79,8 @@ http_jar(
     ],
 )
 
-RULES_OPPIA_ANDROID_TAG = "v0.6"
-
-RULES_OPPIA_ANDROID_SHA = "1d465ed74c32b98472401373305d57daca22de940ba5469acde4b0380c0cda4f"
+RULES_OPPIA_ANDROID_TAG = "v0.7"
+RULES_OPPIA_ANDROID_SHA = "62e8d1f997a8a6b5ada27276e6c57a872b5eeaf3c89548d5a45981484e14ac96"
 
 http_archive(
     name = "rules_oppia_android",
