@@ -1,6 +1,9 @@
 package com.yhsif.nene
 
+import android.os.Build
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.View
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
@@ -90,6 +93,18 @@ public class SettingsActivity :
     super.onCreate(savedInstanceState)
     setupActionBar()
     setContentView(R.layout.settings)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+      // Add additional 46dx padding to top for api 35+,
+      // as they no longer auto add the padding for the action bar.
+      val dp = 46f
+      val px = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        dp,
+        resources.displayMetrics,
+      )
+      findViewById<View>(R.id.fragment_container).setPadding(0, px.toInt(), 0, 0)
+    }
 
     if (savedInstanceState == null) {
       var frag = getSupportFragmentManager().findFragmentByTag(
